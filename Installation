@@ -1,0 +1,63 @@
+## Installation
+Cowrie is a popular SSH and Telnet honeypot that lets you log and interact with unauthorized access attempts. Here's a guide to installing Cowrie on your system:
+
+Prerequisites
+System: Cowrie typically runs on Linux (Ubuntu or Debian recommended).
+
+Step-by-Step Installation
+
+1. Update System Packages:
+
+sudo apt update
+sudo apt upgrade
+
+
+2. Install Dependencies:
+
+sudo apt install python3 python3-venv libssl-dev libffi-dev build-essential git
+
+
+3. Create a New User (Optional but Recommended):
+
+sudo adduser --disabled-password cowrie
+sudo su - cowrie
+
+
+4. Download Cowrie:
+
+git clone https://github.com/cowrie/cowrie.git
+cd cowrie
+
+
+5. Set Up a Virtual Environment:
+
+python3 -m venv cowrie-env
+source cowrie-env/bin/activate
+
+
+6. Install Required Python Packages:
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+
+7. Configure Cowrie:
+
+Copy the example configuration:
+
+cp etc/cowrie.cfg.dist etc/cowrie.cfg
+
+Edit etc/cowrie.cfg as needed. For example, to enable SSH, ensure that the SSH section is uncommented and configured.
+
+
+
+8. Run Cowrie:
+
+bin/cowrie start
+
+To check logs, use:
+
+tail -f var/log/cowrie/cowrie.log
+
+
+Cowrie should now be running as a honeypot. You can monitor and analyze logs to see the captured activity.
